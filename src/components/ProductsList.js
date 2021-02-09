@@ -8,27 +8,27 @@ import ProductItem from "../components/ProductItem"
 
 function ProductsList() {
 
-    let products= ([])
+/*     let products= ([]) */
 
-    let [productsList, setProductsList] = useState([])
+    let [products, setProducts] = useState([])
 
     useEffect(function () {
         fetch("http://localhost:3001/api/productos")
         .then(response => response.json())
-        .then(json => {products = json})
+        .then(json => setProducts(json.products))
         .catch(error => console.log("1",error))
     } , [])
 
     console.log(products)
-    setProductsList = products.products
-    console.log(productsList)
+/*     setProductsList = products.products
+    console.log(products) */
 
     return (
         <Fragment>
             <h1>Listado de Productos</h1>
             <div>
                 {
-                    productsList.map(product => <ProductItem product={product} /> )  
+                    products.map((product, i) => <ProductItem product={product} key={i}/> )  
                 }
 {/* Se saca este codigo para hacer el Item Stateless (componente ProductItem)     */}                    
 {/*                     return {
