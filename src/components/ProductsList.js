@@ -8,8 +8,6 @@ import ProductItem from "../components/ProductItem"
 
 function ProductsList() {
 
-/*     let products= ([]) */
-
     let [products, setProducts] = useState([])
 
     useEffect(function () {
@@ -20,8 +18,6 @@ function ProductsList() {
     } , [])
 
     console.log(products)
-/*     setProductsList = products.products
-    console.log(products) */
 
     return (
         <Fragment>

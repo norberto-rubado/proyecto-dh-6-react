@@ -3,10 +3,11 @@ import {useParams, useHistory} from "react-router-dom"
 
 function ProductDetail() {
 
+    console.log("por aca")
     let params = useParams()
     let history = useHistory()
 
-    const [post, setPost] = useState ({
+    let [post, setPost] = useState ({
         id : null,
         name : "",
         category : "",
@@ -14,13 +15,16 @@ function ProductDetail() {
         description : "",
         image : "",
     })
+    console.log(params)
 
     useEffect(function() {
-        fetch("https://localhost:3001/api/productos/${params.id}")
+        fetch("http://localhost:3001/api/productos/${params.id}")
         .then(response => response.json())
         .then(json => {setPost = json})
+        .catch(error => console.log("1",error))
     }, [])
 
+    console.log(post)
     return (
         <div>
             <h1>Detalle de Producto</h1>
@@ -28,7 +32,7 @@ function ProductDetail() {
             <p>{post.category}</p>
             <p>{post.price}</p>
             <p>{post.description}</p>
-            <img src={post.image} alt= "Imagen del producto"></img>
+{/*             <img src={post.image} alt= "Imagen del producto"></img> */}
             <button onClick={() => {history.goBack()}}>
                 Volver
             </button>
